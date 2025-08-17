@@ -1,10 +1,9 @@
-package com.example.revisao_exercicios_lambda;
+package com.example.revisao_exercicios_lambda.op_matematica;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
