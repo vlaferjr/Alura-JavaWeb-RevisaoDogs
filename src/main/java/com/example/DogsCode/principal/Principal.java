@@ -1,9 +1,6 @@
 package com.example.DogsCode.principal;
 
-import com.example.DogsCode.models.AtributosRaca;
-import com.example.DogsCode.models.Racas;
-import com.example.DogsCode.models.RespostaRacas;
-import com.example.DogsCode.models.RespostaRacasComId;
+import com.example.DogsCode.models.*;
 import com.example.DogsCode.services.ConsumoApiService;
 import com.example.DogsCode.services.converteDadosService.ConverteDadosService;
 
@@ -55,6 +52,9 @@ public class Principal {
     public void impressaoDados(RespostaRacas dadosConvertidos) {
         System.out.println("------------- DADOS CONVERTIDOS ------------------");
         System.out.println(dadosConvertidos);
+
+        //ordenação de raças com vida mais longa (pegando pelo tempo máximo de vida)
+
     }
 
     public void impressaoDados(RespostaRacasComId dadosConvertidos) {
@@ -71,8 +71,15 @@ public class Principal {
                                     .toUpperCase())
                                     .collect(Collectors.toList());
         listaNomesRacas.forEach(System.out::println);
-    };
 
+        //ordenação de raças com vida mais longa (pegando pelo tempo máximo de vida)
+        System.out.println("----------------- LISTA ITERADA POR ORDEM DE LONGEVIDADE----------------------");
+        Arrays.stream(dados.data())
+                .map(dado -> dado.atributosRaca())//pega o atributo raça
+                .sorted(Comparator.comparing((AtributosRaca raca) -> raca.vidaRaca().tempoMaximo()).reversed())
+                .limit(3) //pega as 3 Vida Máxima em ordem decrescente
+                .forEach(raca -> System.out.println("Raça: " + raca.nome() + "| Vida máxima: " + raca.vidaRaca().tempoMaximo()));
+    };
 }
 
 
