@@ -77,9 +77,24 @@ public class Principal {
         Arrays.stream(dados.data())
                 .map(dado -> dado.atributosRaca())//pega o atributo raça
                 .sorted(Comparator.comparing((AtributosRaca raca) -> raca.vidaRaca().tempoMaximo()).reversed())
-                .limit(3) //pega as 3 Vida Máxima em ordem decrescente
+                //.limit(3) //pega as 3 Vida Máxima em ordem decrescente
+                .forEach(raca -> System.out.println("Raça: " + raca.nome() + "| Vida máxima: " + raca.vidaRaca().tempoMaximo()));
+
+
+        //deixar o usuário escolher quanto tempo quer viver com o cachorro
+        System.out.println("----------------- LISTA COM TEMPO DE VIDA DEFINIDO PELO USUÁRIO ---------------------");
+        int idade;
+        System.out.println("A partir de quanto tempo de vida vc quer viver com o cachorro?");
+        idade = leitura.nextInt();
+        leitura.nextLine();
+        Arrays.stream(dados.data())
+                .filter(dado -> dado.atributosRaca().vidaRaca().tempoMaximo() >= idade)
+                .map(dado -> dado.atributosRaca())
+                .sorted(Comparator.comparing(atributosRaca -> atributosRaca.vidaRaca().tempoMaximo()))
                 .forEach(raca -> System.out.println("Raça: " + raca.nome() + "| Vida máxima: " + raca.vidaRaca().tempoMaximo()));
     };
+
+
 }
 
 
